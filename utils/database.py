@@ -103,3 +103,4 @@ def get_summaries_by_user(user_id):
 def get_summary_by_id(summary_id):
     summary = db.summaries.find_one({"_id": ObjectId(summary_id)})
     return summary
+
