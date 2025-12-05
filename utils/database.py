@@ -5,10 +5,10 @@ from pymongo import MongoClient
 # Load .env variables
 load_dotenv()
 
-MONGO_URL = os.getenv("mongodb+srv://BookSummarizerDB:eFR5bBaLoX4InEOQ@booksummarizercluster.1hecn1r.mongodb.net/")
-DB_NAME = os.getenv("BookSummarizerDB")
+MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("MONGO_DB_NAME")
 
-client = MongoClient(MONGO_URL)
+client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
 
 def get_database():
@@ -23,7 +23,7 @@ def create_user(name, email, password_hash, role="user",created_at=None):
         "name": name,
         "email": email,
         "password_hash": password_hash,
-        "created_at": datatime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "role": role
     }
     result = db.users.insert_one(user)

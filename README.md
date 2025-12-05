@@ -19,13 +19,13 @@ For Activating ENVIRONMENT -> python -m venv venv
 ### 3. Install Required Python Libraries
 pip install
 ' ' ' 
-# streamlit 
-# transformers 
-# pdfplumber 
-# python-docx 
-# bcrypt 
-# python-dotenv 
-# pymongo
+streamlit 
+transformers 
+pdfplumber 
+python-docx 
+bcrypt 
+python-dotenv 
+pymongo
 '  '  '
 
 ### 4. Project Folder Structure
