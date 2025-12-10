@@ -1,10 +1,21 @@
 import streamlit as st
+import pdfplumber
+from docx import Document
+from backend.book_repository import create_book
+from backend.session import get_current_user
 
+###temporary
+from utils.text_extractor import (
+    extract_text_from_txt,
+    extract_text_from_pdf,
+    extract_text_from_docx
+)
+###temporary
 # 10 MB in bytes
 MAX_FILE_SIZE = 10 * 1024 * 1024
 ALLOWED_EXTENSIONS = ["txt", "pdf", "docx"]
 
-
+ext = None
 def format_size(bytes_value: int) -> str:
     """Return human readable size like 1.2 MB."""
     if bytes_value < 1024:
@@ -83,9 +94,90 @@ def upload_book_page():
         st.write(f"**Size:** {format_size(file_size)}")
         st.write(f"**Detected type:** {ext.upper()}")
 
-        if st.button("Upload and process (backend will be added later)"):
-            st.info("For now this only confirms front end validation. Backend saving comes in Task 4.")
-            # Later we will call a backend function here to:
-            #  1. Save file to disk
-            #  2. Create a book record in the database
-            #  3. Trigger text extraction
+    if st.button("Upload and process"):
+    
+    # ---------- TEXT EXTRACTION ----------
+        with st.spinner("Extracting text ..."):
+            if ext == "txt":
+                raw_text = extract_text_from_txt(uploaded_file)
+
+            elif ext == "pdf":
+                raw_text = extract_text_from_pdf(uploaded_file)
+
+            elif ext == "docx":
+                raw_text = extract_text_from_docx(uploaded_file)
+
+    # ---------- POST EXTRACTION VALIDATION ----------
+        if not raw_text or not raw_text.strip():
+            st.warning(
+                "No text could be extracted. "
+                "This file may be scanned or unreadable."
+            )
+            return
+
+    # ---------- DATABASE INSERT ----------
+        user = get_current_user()
+
+        book_id = create_book(
+            user_id=user["user_id"],
+            title=title,
+            author=author if author else None,
+            chapter=chapter if chapter else None,
+            file_type=ext,
+            raw_text=raw_text
+        )
+
+    # ---------- SUCCESS UI ----------
+        st.success("Text extracted and saved successfully")
+        st.write("Extracted text length:", len(raw_text))
+        st.write(f"Book ID: {book_id}")
+
+
+    #st.success("File passed all validations.")
+    st.subheader("File Preview")
+    ext = None
+
+    if uploaded_file is not None:
+        file_name = uploaded_file.name
+        ext = file_name.rsplit(".", 1)[-1].lower() if "." in file_name else None
+
+        if ext not in ALLOWED_EXTENSIONS:
+            st.error("Unsupported file type")
+            return
+
+    # TXT PREVIEW
+    if ext == "txt":
+        try:
+            text_content = uploaded_file.read().decode("utf-8", errors="ignore")
+            uploaded_file.seek(0)
+
+            preview_text = text_content[:500]
+            st.text(preview_text)
+
+            if len(text_content) > 500:
+                st.caption("Showing first 500 characters")
+        except Exception:
+            st.warning("Unable to preview this TXT file")
+
+    # PDF PREVIEW
+    elif ext == "pdf":
+        try:
+            with pdfplumber.open(uploaded_file) as pdf:
+                page_count = len(pdf.pages)
+
+            uploaded_file.seek(0)
+            st.write(f"Number of pages: {page_count}")
+        except Exception:
+            st.warning("Unable to read PDF preview")
+
+    # DOCX PREVIEW
+    elif ext == "docx":
+        try:
+            document = Document(uploaded_file)
+            paragraph_count = len(document.paragraphs)
+
+            uploaded_file.seek(0)
+            st.write(f"Paragraphs detected: {paragraph_count}")
+        except Exception:
+            st.warning("Unable to read DOCX preview")
+

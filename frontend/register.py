@@ -1,6 +1,9 @@
 import streamlit as st
 import re
 from backend.auth import register_user
+def load_css():
+    with open("styles/styles.css") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def validate_name(name):
     return bool(re.match(r"^[A-Za-z ]{2,}$", name))
@@ -14,6 +17,7 @@ def validate_password(password):
     return bool(re.match(pattern, password))
 
 def register_page():
+    load_css()
     st.title("Create an Account")
 
     first_name = st.text_input("First Name")
@@ -56,6 +60,11 @@ def register_page():
                 st.rerun()
             else:
                 st.error(msg)
+    if st.button("Already have an account? Login here"):
+      st.session_state["current_page"] = "login"
+      st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
     if first_error:
         st.warning(first_error)

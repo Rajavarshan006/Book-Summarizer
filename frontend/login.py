@@ -1,8 +1,12 @@
 import streamlit as st
 from backend.auth import login_user
 from backend.session import login_session
+def load_css():
+    with open("styles/styles.css") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def login_page():
+    load_css()
     st.title("Login")
 
     email = st.text_input("Email Address")
@@ -36,3 +40,8 @@ def login_page():
 
     if password_error:
         st.warning(password_error)
+    if st.button("New user? Create an account"):
+        st.session_state["current_page"] = "register"
+        st.rerun()
+    st.markdown('<div class="sub-link">Forgot Password?</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
