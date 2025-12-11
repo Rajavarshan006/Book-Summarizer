@@ -1,4 +1,5 @@
 from datetime import datetime
+from bson.objectid import ObjectId
 from utils.database import db
 
 
@@ -15,7 +16,7 @@ def create_book(
     """
 
     book_doc = {
-        "user_id": user_id,
+        "user_id": ObjectId(user_id),
         "title": title,
         "author": author,
         "chapter": chapter,

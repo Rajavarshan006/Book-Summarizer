@@ -80,3 +80,20 @@ def create_summary(book_id, user_id, summary_text, summary_length, summary_style
 
 def get_summary_by_id(summary_id):
     return db.summaries.find_one({"_id": ObjectId(summary_id)})
+
+def get_books_by_user(user_id):
+    """Return list of books for the given user id."""
+    try:
+        uid = ObjectId(user_id) if isinstance(user_id, str) else user_id
+    except Exception:
+        return []
+    return list(db.books.find({"user_id": uid}))
+
+
+def get_summaries_by_user(user_id):
+    """Return list of summaries for the given user id."""
+    try:
+        uid = ObjectId(user_id) if isinstance(user_id, str) else user_id
+    except Exception:
+        return []
+    return list(db.summaries.find({"user_id": uid}))

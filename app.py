@@ -3,6 +3,8 @@ from frontend.login import login_page
 from frontend.register import register_page
 from backend.session import is_logged_in, logout_session
 from frontend.upload_book import upload_book_page
+from frontend.dashboard import dashboard_page
+
 
 
 def main():
@@ -28,21 +30,18 @@ def main():
 
         if st.sidebar.button("Dashboard"):
             st.session_state["current_page"] = "dashboard"
-            st.rerun()
 
         if st.sidebar.button("Upload Book"):
             st.session_state["current_page"] = "upload"
-            st.rerun()
 
         if st.sidebar.button("Logout"):
             logout_session()
             st.session_state["current_page"] = "login"
             st.rerun()
 
-        # ---- PAGE RENDERING ----
+        # Page routing
         if st.session_state["current_page"] == "dashboard":
-            st.title("Dashboard")
-            st.write("You are logged in successfully.")
+            dashboard_page()
 
         elif st.session_state["current_page"] == "upload":
             upload_book_page()
