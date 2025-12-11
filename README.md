@@ -59,7 +59,7 @@ Create a ".env" file in the project root and add:
   ## MONGO_URI= 
   "mongodb+srv://BookSummarizerDB:eFR5bBaLoX4InEOQ@booksummarizercluster.1hecn1r.mongodb.net/"
   ## DB_NAME=
-  "BookSummarizerDB"
+  BookSummarizerDB
 
 
 ## 5. DataBase Handling
@@ -72,7 +72,7 @@ Create a ".env" file in the project root and add:
     # -------------------------
     # BOOK COLLECTION FUNCTIONS
     # -------------------------
-      """
+
       create_book(user_id,title,author,chapter,file_path)->
         Create a new book entry.
         - user_id: which user uploaded the book
@@ -91,7 +91,6 @@ Create a ".env" file in the project root and add:
         - text_extracted
         - completed
         - failed
-        """
       get_book_by_id(book_id)-> Obtain book through id.
       get_books_by_user(user_id) -> gets the list of books stored in the name of user id.
 
@@ -99,7 +98,7 @@ Create a ".env" file in the project root and add:
     # SUMMARY COLLECTION FUNCTIONS
     # -------------------------
       create_summary(book_id,user_id,summary_text,summary_length,summary_style,chunk_summaries,created_at=None) ->
-      '''
+    
       Fields included:
       - book_id: book reference
       - user_id: who generated the summary
@@ -108,7 +107,7 @@ Create a ".env" file in the project root and add:
       - summary_length: short/medium/long
       - summary_style: paragraphs/bullets
       - created_at: timestamp
-      '''
+  
       get_summaries_by_user(user_id)->
         Returns the list of summaries created by the user using user_id;
       get_summary_by_id(summary_id)->
@@ -138,8 +137,14 @@ Create a ".env" file in the project root and add:
 
 
 ## Status
- Task 1 Completed  
- Task 2 in Completed
+ Task 1 Completed  |             '''''''''''''''''''''''''''''''''''
+ Task 2  Completed |                
+ Task 3 completed  |
+ Task 4 completed  |                MILESTONE 1
+ Task 5 completed  |
+ Task 6 completed  |
+ Task 7 completed  |            ''''''''''''''''''''''''''''''''''''''
+ 
 
 ## Author
 Rajavarshan R R
