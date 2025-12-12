@@ -1,32 +1,85 @@
-/* Main card block */
+/* ---- MAIN CARD (Login & Register) ---- */
 .main-block {
     max-width: 450px;
     margin: auto;
     padding: 30px;
-    border-radius: 12px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    border-radius: 15px;
+
+    /* Dark Card Style */
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.25);
 }
 
-/* Title text inside card */
+/* ---- TITLES ---- */
 .title-text {
     text-align: center;
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 600;
-    margin-bottom: 10px;
-    color: #333333;
+    margin-bottom: 15px;
+    color: #ffffff;  /* bright text */
 }
 
-/* Sub links like Login here / Create account */
+/* ---- FORM LABELS ---- */
+label {
+    color: #e5e5e5 !important;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* ---- INPUT FIELDS ---- */
+input[type="text"], input[type="email"], input[type="password"] {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 8px !important;
+}
+
+input::placeholder {
+    color: #bbbbbb !important;
+}
+
+/* ---- BUTTON STYLE ---- */
+button {
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    padding: 0.6rem 1.2rem !important;
+    font-weight: 600 !important;
+}
+
+/* ---- STREAMLIT PRIMARY BUTTON ---- */
+.stButton>button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    color: white !important;
+}
+
+.stButton>button:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+/* ---- SUBLINK (Login Here / Create Account) ---- */
 .sub-link {
     text-align: center;
-    color: #4A90E2;
+    color: #a9c7ff !important;
     font-size: 15px;
     cursor: pointer;
     padding-top: 10px;
 }
 
 .sub-link:hover {
-    color: #1B70C8;
+    color: #d5e2ff !important;
     text-decoration: underline;
+}
+
+/* ---- REMOVE WHITE BACKGROUND FROM STREAMLIT ---- */
+.block-container {
+    background: transparent !important;
+}
+
+.css-ffhzg2 {
+    background: transparent !important; /* Fixes some Streamlit builds */
 }

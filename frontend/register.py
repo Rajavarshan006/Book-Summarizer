@@ -2,9 +2,14 @@ import streamlit as st
 import re
 from backend.auth import register_user
 
+
 def load_css():
-    with open("styles/styles.css") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    try:
+        with open("styles/styles.css") as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    except:
+        st.warning("styles.css not found. UI will load without custom styles.")
+
 
 # ----------------------
 # VALIDATION FUNCTIONS
@@ -12,13 +17,16 @@ def load_css():
 def validate_name(name):
     return bool(re.match(r"^[A-Za-z ]{2,}$", name))
 
+
 def validate_email(email):
     pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     return bool(re.match(pattern, email))
 
+
 def validate_password(password):
     pattern = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$"
     return bool(re.match(pattern, password))
+
 
 # ----------------------
 # REGISTER PAGE
@@ -43,7 +51,7 @@ def register_page():
     # ----------------------
     # SIGNUP BUTTON CLICK
     # ----------------------
-    if st.button("Signup"):
+    if st.button("Signup", key="signup_btn"):
         # validation
         if not validate_name(first_name):
             first_error = "First name must only contain letters and spaces, min 2 characters."
@@ -64,14 +72,16 @@ def register_page():
         if first_error or last_error or email_error or password_error or confirm_error:
             st.error("Please fix the errors below.")
         else:
-            full_name = first_name + " " + last_name
-            success, msg = register_user(full_name, email, password)
+            full_name = f"{first_name.strip()} {last_name.strip()}"
+            email_clean = email.strip().lower()
+
+            success, msg = register_user(full_name, email_clean, password)
 
             if success:
                 st.success(msg)
                 st.info("Redirecting to login page...")
 
-                # FIX: Set page then rerun
+                # navigate to login
                 st.session_state["current_page"] = "login"
                 st.rerun()
             else:
@@ -80,7 +90,7 @@ def register_page():
     # ----------------------
     # NAVIGATE TO LOGIN
     # ----------------------
-    if st.button("Already have an account? Login here"):
+    if st.button("Already have an account? Login here", key="go_login_btn"):
         st.session_state["current_page"] = "login"
         st.rerun()
 
@@ -89,15 +99,11 @@ def register_page():
     # ----------------------
     if first_error:
         st.warning(first_error)
-
     if last_error:
         st.warning(last_error)
-
     if email_error:
         st.warning(email_error)
-
     if password_error:
         st.warning(password_error)
-
     if confirm_error:
         st.warning(confirm_error)

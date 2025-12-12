@@ -1,30 +1,44 @@
 import streamlit as st
 from frontend.login import login_page
 from frontend.register import register_page
+from frontend.landing import landing_page      # ADD YOUR LANDING PAGE
 from backend.session import is_logged_in, logout_session
 from frontend.upload_book import upload_book_page
 from frontend.dashboard import dashboard_page
 
 
-
 def main():
 
-    # Initialize navigation state
+    # -----------------------------------------
+    # INITIAL PAGE SHOULD BE LANDING PAGE
+    # -----------------------------------------
     if "current_page" not in st.session_state:
-        st.session_state["current_page"] = "login"
+        st.session_state["current_page"] = "landing"   # FIXED
 
-    # User not logged in
+    page = st.session_state["current_page"]
+
+    # -----------------------------------------
+    # USER NOT LOGGED IN
+    # -----------------------------------------
     if not is_logged_in():
 
-        # Show Login Page
-        if st.session_state["current_page"] == "login":
+        if page == "landing":
+            landing_page()
+
+        elif page == "login":
             login_page()
 
-        # Show Register Page
-        elif st.session_state["current_page"] == "register":
+        elif page == "register":
             register_page()
 
-    # User is logged in
+        else:
+            # fallback safety
+            st.session_state["current_page"] = "landing"
+            st.rerun()
+
+    # -----------------------------------------
+    # USER IS LOGGED IN
+    # -----------------------------------------
     else:
         st.sidebar.title("Navigation")
 
@@ -36,16 +50,19 @@ def main():
 
         if st.sidebar.button("Logout"):
             logout_session()
-            st.session_state["current_page"] = "login"
+            st.session_state["current_page"] = "landing"   # go back to landing after logout
             st.rerun()
 
-        # Page routing
-        if st.session_state["current_page"] == "dashboard":
+        # Routing
+        if page == "dashboard":
             dashboard_page()
 
-        elif st.session_state["current_page"] == "upload":
+        elif page == "upload":
             upload_book_page()
 
+        else:
+            st.session_state["current_page"] = "dashboard"
+            st.rerun()
 
 
 if __name__ == "__main__":
