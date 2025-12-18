@@ -137,9 +137,37 @@ Create a ".env" file in the project root and add:
 - Save and view past summaries
 
 
-## Status
- Task 1 Completed  
- Task 2 in Completed
+## 🚧 Project Status
+
+This project is currently under active development.
+
+### ✅ Completed
+- User registration and login
+- Session-based authentication
+- File upload UI (TXT, PDF, DOCX)
+- File size validation (10MB limit)
+- File type validation
+- File corruption check
+- File preview (TXT preview, PDF page count, DOCX info)
+- Raw text extraction from uploaded files
+
+### 🔄 In Progress
+- Text preprocessing pipeline (Task 6)
+
+
+## ▶️ How to Run the Application
+
+```bash
+# Activate virtual environment
+# Windows
+venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run Streamlit app
+streamlit run app.py
+
 
 ## Author
 Rajavarshan R R

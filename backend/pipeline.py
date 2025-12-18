@@ -1,6 +1,7 @@
 from typing import Dict, Optional
 from datetime import datetime
 import logging
+import nltk
 
 from backend.preprocessing import (
     clean_text,
@@ -11,9 +12,19 @@ from backend.sentence_segmentation import segment_sentences
 from backend.text_statistics import calculate_text_statistics
 from backend.text_chunking import chunk_text, get_chunk_summary_info
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Configure structured logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+try:
+    nltk.data.find('tokenizers/punkt_tab')
+except LookupError:
+    nltk.download('punkt_tab')
 
 
 class PreprocessingPipeline:

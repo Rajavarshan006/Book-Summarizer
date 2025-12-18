@@ -2,7 +2,14 @@ import streamlit as st
 
 st.set_page_config(page_title="Book Summarizer", layout="wide")
 
-
+def landing_page():
+    st.title("Welcome to Book Summarizer")
+    if st.button("Get Started"):
+        st.session_state["current_page"] = "register"
+        st.rerun()
+    if st.button("Login"):
+        st.session_state["current_page"] = "login"
+        st.rerun()
 
 # =======================
 # Custom CSS - Full Design
@@ -438,11 +445,4 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-def landing_page():
-    st.title("Welcome to Book Summarizer")
-    if st.button("Get Started"):
-        st.session_state["current_page"] = "register"
-        st.rerun()
-    if st.button("Login"):
-        st.session_state["current_page"] = "login"
-        st.rerun()
+

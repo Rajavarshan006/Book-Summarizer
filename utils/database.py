@@ -9,7 +9,12 @@ load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
 DB_NAME = os.getenv("MONGO_DB_NAME")
 
-client = MongoClient(MONGO_URI)
+client = MongoClient(MONGO_URI,
+    tls=True,
+    tlsAllowInvalidCertificates=True,
+    retryWrites=True,
+    w='majority'
+)
 db = client[DB_NAME]
 
 def get_database():
@@ -97,3 +102,25 @@ def get_summaries_by_user(user_id):
     except Exception:
         return []
     return list(db.summaries.find({"user_id": uid}))
+
+client = MongoClient(MONGO_URI,
+    tls=True,
+    tlsAllowInvalidCertificates=True,
+    retryWrites=True,
+    w='majority'
+)
+db = client[DB_NAME]
+
+# Add these
+books_collection = db.books
+summaries_collection = db.summaries
+
+def delete_book(book_id):
+    try:
+        db.books.delete_one({"_id": ObjectId(book_id)})
+        # Also delete summaries for this book
+        db.summaries.delete_many({"book_id": ObjectId(book_id)})
+        return True
+    except Exception as e:
+        print("Error deleting book:", e)
+        return False

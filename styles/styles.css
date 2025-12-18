@@ -83,3 +83,13 @@ button {
 .css-ffhzg2 {
     background: transparent !important; /* Fixes some Streamlit builds */
 }
+
+/* Add tab panel styling */
+div[data-baseweb="tab-panel"] {
+    padding: 20px;
+    min-height: 300px;
+}
+
+.stTabs [role="tabpanel"] {
+    overflow: visible !important;
+}

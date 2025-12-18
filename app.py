@@ -5,6 +5,7 @@ from frontend.landing import landing_page      # ADD YOUR LANDING PAGE
 from backend.session import is_logged_in, logout_session
 from frontend.upload_book import upload_book_page
 from frontend.dashboard import dashboard_page
+from frontend.uploaded_books_page import uploaded_books_page
 
 
 def main():
@@ -45,6 +46,10 @@ def main():
         if st.sidebar.button("Dashboard"):
             st.session_state["current_page"] = "dashboard"
 
+        if st.sidebar.button("Uploaded Books"):
+            st.session_state["current_page"] = "uploaded_books"
+            st.rerun()
+
         if st.sidebar.button("Upload Book"):
             st.session_state["current_page"] = "upload"
 
@@ -56,7 +61,8 @@ def main():
         # Routing
         if page == "dashboard":
             dashboard_page()
-
+        elif page == "uploaded_books":
+            uploaded_books_page()
         elif page == "upload":
             upload_book_page()
 
