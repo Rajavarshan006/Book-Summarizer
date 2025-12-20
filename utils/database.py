@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
-from datetime import datetime
+from datetime import datetime, timezone, timezone, timezone, timezone, timezone
 from bson.objectid import ObjectId
 
 load_dotenv()
@@ -11,9 +11,9 @@ DB_NAME = os.getenv("MONGO_DB_NAME")
 
 client = MongoClient(MONGO_URI,
     tls=True,
-    tlsAllowInvalidCertificates=True,
     retryWrites=True,
-    w='majority'
+    w='majority',
+    tlsAllowInvalidCertificates=os.getenv('ENV') == 'DEV'
 )
 db = client[DB_NAME]
 
@@ -29,7 +29,7 @@ def create_user(name, email, password_hash, role="user"):
         "name": name,
         "email": email,
         "password_hash": password_hash,
-        "created_at": datetime.utcnow(),
+        "created_at": datetime.now(timezone.utc),
         "role": role
     }
     result = db.users.insert_one(user)
@@ -51,7 +51,7 @@ def create_book(user_id, title, raw_text, author=None, chapter=None, file_type="
         "file_type": file_type,
         "file_path": file_path,
         "raw_text": raw_text,
-        "uploaded_at": datetime.utcnow(),
+        "uploaded_at": datetime.now(timezone.utc),
         "status": "uploaded"
     }
     result = db.books.insert_one(book)
@@ -66,6 +66,20 @@ def update_book_status(book_id, status):
         {"$set": {"status": status}}
     )
 
+def conditional_update_book_status(book_id, expected_status, new_status):
+    result = db.books.update_one(
+        {"_id": ObjectId(book_id), "status": expected_status},
+        {"$set": {"status": new_status}}
+    )
+    return result.modified_count > 0
+
+def get_book_status(book_id):
+    book = db.books.find_one(
+        {"_id": ObjectId(book_id)},
+        {"status": 1}
+    )
+    return book.get("status") if book else None
+
 # -------------------------
 # SUMMARY FUNCTIONS
 # -------------------------
@@ -78,7 +92,7 @@ def create_summary(book_id, user_id, summary_text, summary_length, summary_style
         "summary_length": summary_length,
         "summary_style": summary_style,
         "chunk_summaries": chunk_summaries,
-        "created_at": datetime.utcnow()
+        "created_at": datetime.now(timezone.utc)
     }
     result = db.summaries.insert_one(summary)
     return str(result.inserted_id)
@@ -102,14 +116,6 @@ def get_summaries_by_user(user_id):
     except Exception:
         return []
     return list(db.summaries.find({"user_id": uid}))
-
-client = MongoClient(MONGO_URI,
-    tls=True,
-    tlsAllowInvalidCertificates=True,
-    retryWrites=True,
-    w='majority'
-)
-db = client[DB_NAME]
 
 # Add these
 books_collection = db.books
