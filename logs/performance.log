@@ -1,0 +1,13 @@
+2025-12-20 20:45:00 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-20 20:45:04 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.5869 seconds
+2025-12-20 20:45:04 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-20 20:45:07 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 1.9426s, Input: 54 chars, Output: 54 chars, Throughput: 27.80 chars/s
+2025-12-20 20:45:07 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 0.8682s, Input: 138 chars, Output: 88 chars, Throughput: 158.96 chars/s
+2025-12-20 20:45:09 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 2.0522s, Input: 289 chars, Output: 239 chars, Throughput: 140.82 chars/s
+2025-12-20 20:45:12 - model_performance_logger - INFO - Preprocessing 'full_pipeline' completed - Text: 1155 chars, Time: 2.5424s, Chunks: 2, Throughput: 454.29 chars/s
+2025-12-20 20:45:12 - model_performance_logger - INFO - Total processing completed - Time: 3.0424s, Chunks: 2, Success: 2, Errors: 0 (0.0%), Avg time per chunk: 1.5212s
+2025-12-20 20:45:12 - model_performance_logger - INFO - Performance metrics saved to logs/performance_metrics.json
+2025-12-20 20:45:12 - model_performance_logger - ERROR - ERROR [TEST_ERROR]: This is a test error for logging | Context: {"test": "error_logging", "severity": "low"}
+2025-12-20 20:47:12 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-20 20:47:15 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.7404 seconds
+2025-12-20 20:47:15 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB

@@ -1,0 +1,74 @@
+{
+  "model_loading_times": [
+    {
+      "timestamp": "2025-12-20T20:45:04.231851",
+      "model_name": "t5-small",
+      "loading_time": 3.586923599243164,
+      "device": "cpu"
+    }
+  ],
+  "inference_times": [
+    {
+      "timestamp": "2025-12-20T20:45:07.006089",
+      "model_name": "t5-small",
+      "inference_time": 1.9426124095916748,
+      "input_length": 54,
+      "output_length": 54,
+      "chunk_id": null,
+      "throughput": 27.797619192266186
+    },
+    {
+      "timestamp": "2025-12-20T20:45:07.874251",
+      "model_name": "t5-small",
+      "inference_time": 0.868161678314209,
+      "input_length": 138,
+      "output_length": 88,
+      "chunk_id": null,
+      "throughput": 158.95656701637367
+    },
+    {
+      "timestamp": "2025-12-20T20:45:09.926469",
+      "model_name": "t5-small",
+      "inference_time": 2.052217960357666,
+      "input_length": 289,
+      "output_length": 239,
+      "chunk_id": null,
+      "throughput": 140.823248593747
+    }
+  ],
+  "preprocessing_times": [
+    {
+      "timestamp": "2025-12-20T20:45:12.468919",
+      "operation": "full_pipeline",
+      "text_length": 1155,
+      "processing_time": 2.542449712753296,
+      "chunk_count": 2,
+      "throughput": 454.286271310049
+    }
+  ],
+  "total_processing_times": [
+    {
+      "timestamp": "2025-12-20T20:45:12.476674",
+      "total_time": 3.042449712753296,
+      "chunk_count": 2,
+      "success_count": 2,
+      "error_count": 0,
+      "error_rate": 0.0
+    }
+  ],
+  "memory_usage": [
+    {
+      "timestamp": "2025-12-20T20:45:04.231851",
+      "peak": 0,
+      "current": 0,
+      "model": 230.814453125
+    }
+  ],
+  "error_rates": [
+    {
+      "timestamp": "2025-12-20T20:45:12.476674",
+      "error_rate": 0.0,
+      "chunk_count": 2
+    }
+  ]
+}
