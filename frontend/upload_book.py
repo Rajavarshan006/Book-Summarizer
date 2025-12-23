@@ -3,6 +3,7 @@ import pdfplumber
 from docx import Document
 from backend.book_repository import create_book
 from backend.session import get_current_user
+from backend.text_processor import process_uploaded_book
 
 
 ###temporary
@@ -145,7 +146,7 @@ def upload_book_page():
         # ---------- DATABASE INSERT ----------
             try:
                 user = get_current_user()
-                
+
                 if not user:
                     st.error("User session not found. Please log in again.")
                     return
@@ -159,11 +160,31 @@ def upload_book_page():
                     raw_text=raw_text
                 )
 
+        # ---------- TEXT PROCESSING ----------
+                try:
+                    with st.spinner("Processing book text..."):
+                        processing_result = process_uploaded_book(str(book_id))
+
+                        # Validate processing result
+                        if not isinstance(processing_result, dict) or "success" not in processing_result:
+                            st.error("Text processing failed: Invalid result format received")
+                            return
+
+                        if not processing_result["success"]:
+                            st.error(f"Text processing failed: {processing_result.get('error', 'Unknown error')}")
+                            return
+                        else:
+                            st.success("Text processing completed successfully")
+
+                except Exception as e:
+                    st.error(f"Text processing failed: {str(e)}")
+                    return
+
             # ---------- SUCCESS UI ----------
                 st.success("Text extracted and saved successfully")
                 st.write("Extracted text length:", len(raw_text))
                 st.write(f"Book ID: {book_id}")
-            
+
             except Exception as e:
                 st.error(f"Error saving book to database: {str(e)}")
                 return
@@ -223,4 +244,3 @@ def upload_book_page():
             st.write(st.session_state['summary'])
         else:
             st.info("Upload a book to generate summary")
-

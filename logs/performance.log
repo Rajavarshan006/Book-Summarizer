@@ -11,3 +11,91 @@
 2025-12-20 20:47:12 - model_performance_logger - INFO - Starting to load model t5-small...
 2025-12-20 20:47:15 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.7404 seconds
 2025-12-20 20:47:15 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-20 20:57:47 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-20 20:57:51 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.9988 seconds
+2025-12-20 20:57:51 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-20 20:57:58 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 6.6233s, Input: 5058 chars, Output: 192 chars, Throughput: 763.67 chars/s
+2025-12-20 20:58:03 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 5.1033s, Input: 1430 chars, Output: 270 chars, Throughput: 280.21 chars/s
+2025-12-20 20:58:07 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 3.5602s, Input: 1229 chars, Output: 224 chars, Throughput: 345.21 chars/s
+2025-12-20 20:58:10 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 3.4825s, Input: 1045 chars, Output: 237 chars, Throughput: 300.07 chars/s
+2025-12-22 23:03:47 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-22 23:03:51 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 4.4147 seconds
+2025-12-22 23:03:51 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:10:22 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:10:27 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 4.5358 seconds
+2025-12-23 17:10:27 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:11:04 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:11:08 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.9262 seconds
+2025-12-23 17:11:08 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:22:36 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:22:40 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.7118 seconds
+2025-12-23 17:22:40 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:24:10 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 7.6542s, Input: 2407 chars, Output: 232 chars, Throughput: 314.47 chars/s
+2025-12-23 17:31:13 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:31:13 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:31:17 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 4.1388 seconds
+2025-12-23 17:31:17 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 4.1388 seconds
+2025-12-23 17:31:17 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:31:17 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:46:58 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:47:02 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.9001 seconds
+2025-12-23 17:47:02 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:52:53 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:52:53 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:52:53 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:52:56 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.8070 seconds
+2025-12-23 17:52:56 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.8070 seconds
+2025-12-23 17:52:56 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.8070 seconds
+2025-12-23 17:52:56 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:52:56 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:52:56 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:56:16 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:56:16 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:56:16 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:56:16 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:56:21 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 4.2062 seconds
+2025-12-23 17:56:21 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 4.2062 seconds
+2025-12-23 17:56:21 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 4.2062 seconds
+2025-12-23 17:56:21 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 4.2062 seconds
+2025-12-23 17:56:21 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:56:21 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:56:21 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:56:21 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:57:10 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:57:10 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:57:10 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:57:10 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:57:10 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 17:57:14 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.9730 seconds
+2025-12-23 17:57:14 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.9730 seconds
+2025-12-23 17:57:14 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.9730 seconds
+2025-12-23 17:57:14 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.9730 seconds
+2025-12-23 17:57:14 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.9730 seconds
+2025-12-23 17:57:14 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:57:14 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:57:14 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:57:14 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 17:57:14 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 18:28:35 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 18:28:39 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.6815 seconds
+2025-12-23 18:28:39 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 18:40:21 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 18:40:25 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.7341 seconds
+2025-12-23 18:40:25 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 18:53:22 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 18:53:26 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.7808 seconds
+2025-12-23 18:53:26 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 18:58:32 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 18:58:36 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.9992 seconds
+2025-12-23 18:58:36 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 19:00:35 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 7.1082s, Input: 2407 chars, Output: 232 chars, Throughput: 338.62 chars/s
+2025-12-23 19:09:56 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 19:09:59 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.6583 seconds
+2025-12-23 19:09:59 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 19:11:14 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 6.0873s, Input: 2407 chars, Output: 232 chars, Throughput: 395.41 chars/s
+2025-12-23 19:12:34 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 5.2124s, Input: 2407 chars, Output: 232 chars, Throughput: 461.79 chars/s
+2025-12-23 19:24:58 - model_performance_logger - INFO - Starting to load model t5-small...
+2025-12-23 19:25:01 - model_performance_logger - INFO - Model 't5-small' loaded on cpu in 3.6163 seconds
+2025-12-23 19:25:01 - model_performance_logger - INFO - Memory usage - Peak: 0.00 MB, Current: 0.00 MB, Model: 230.81 MB
+2025-12-23 19:26:42 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 5.1343s, Input: 2407 chars, Output: 232 chars, Throughput: 468.81 chars/s
+2025-12-23 19:28:28 - model_performance_logger - INFO - Inference completed - Model: t5-small, Time: 5.6569s, Input: 2407 chars, Output: 232 chars, Throughput: 425.49 chars/s

@@ -1,7 +1,6 @@
 import streamlit as st
 from backend.session import get_current_user
 from utils.search_operations import paginate_books, get_search_statistics
-from backend.text_processor import process_uploaded_book
 from utils.database import delete_book
 
 def dashboard_page():
@@ -154,60 +153,34 @@ def dashboard_page():
                 f" | Language: {book.get('language', 'Unknown')}"
             )
 
-            col1, col2, col3, col4 = st.columns(4)
+            # Single column for Delete button only
+            col_delete = st.columns(1)[0]
 
-            with col1:
-                if st.button("👁 View", key=f"v_{book['book_id']}"):
-                    st.session_state["selected_book"] = book["book_id"]
-                    st.session_state["current_page"] = "book_details"
-                    st.rerun()
-
-            with col2:
-                if st.button("⚙ Process", key=f"p_{book['book_id']}"):
-                    with st.spinner("Processing..."):
-                        out = process_uploaded_book(book["book_id"])
-                        if out["success"]:
-                            st.success("Processing complete!")
-                            st.rerun()
-                        else:
-                            st.error(out.get("error"))
-
-            with col3:
-                if st.button("📝 Summarize", key=f"summ_{book['book_id']}"):
-                    with st.spinner("Summarizing..."):
-                        from backend.book_summarization_service import summarize_book
-                        result = summarize_book(book['book_id'], user['user_id'])
-                        if result["success"]:
-                            st.success("Summary generated!")
-                            st.rerun()
-                        else:
-                            st.error(result["error"])
-
-            with col4:
+            with col_delete:
                 if st.button("🗑 Delete", key=f"d_{book['book_id']}"):
-                    st.session_state['book_to_delete'] = book['book_id']
+                    st.session_state.book_to_delete = book['book_id']
                     st.warning("⚠️ Delete confirmation needed")
 
             st.write("---")
         # If a delete action is pending
-    if "book_to_delete" in st.session_state and st.session_state["book_to_delete"]:
+    if "book_to_delete" in st.session_state and st.session_state.book_to_delete:
         st.error("⚠️ Are you sure you want to permanently delete this book?")
 
         col_d1, col_d2 = st.columns(2)
 
         with col_d1:
             if st.button("Yes, Delete Permanently"):
-                success = delete_book(st.session_state["book_to_delete"])
+                success = delete_book(st.session_state.book_to_delete)
                 if success:
                     st.success("✓ Book deleted successfully")
-                    st.session_state["book_to_delete"] = None
+                    st.session_state.book_to_delete = None
                     st.rerun()
                 else:
                     st.error("❌ Failed to delete book. Check logs.")
 
         with col_d2:
             if st.button("Cancel"):
-                st.session_state["book_to_delete"] = None
+                st.session_state.book_to_delete = None
                 st.rerun()
 
     # ==========================================

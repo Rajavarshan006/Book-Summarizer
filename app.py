@@ -6,6 +6,7 @@ from backend.session import is_logged_in, logout_session
 from frontend.upload_book import upload_book_page
 from frontend.dashboard import dashboard_page
 from frontend.uploaded_books_page import uploaded_books_page
+from frontend.generate_summary import generate_summary_page
 
 
 def main():
@@ -45,6 +46,7 @@ def main():
 
         if st.sidebar.button("Dashboard"):
             st.session_state["current_page"] = "dashboard"
+            st.rerun()
 
         if st.sidebar.button("Uploaded Books"):
             st.session_state["current_page"] = "uploaded_books"
@@ -52,6 +54,11 @@ def main():
 
         if st.sidebar.button("Upload Book"):
             st.session_state["current_page"] = "upload"
+            st.rerun()
+
+        if st.sidebar.button("View Summary"):
+            st.session_state["current_page"] = "view_summary"
+            st.rerun()
 
         if st.sidebar.button("Logout"):
             logout_session()
@@ -65,6 +72,8 @@ def main():
             uploaded_books_page()
         elif page == "upload":
             upload_book_page()
+        elif page == "view_summary":
+            generate_summary_page()
 
         else:
             st.session_state["current_page"] = "dashboard"

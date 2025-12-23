@@ -1,8 +1,9 @@
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
-from datetime import datetime, timezone, timezone, timezone, timezone, timezone
+from datetime import datetime, timezone
 from bson.objectid import ObjectId
+from bson.errors import InvalidId
 
 load_dotenv()
 
@@ -84,7 +85,7 @@ def get_book_status(book_id):
 # SUMMARY FUNCTIONS
 # -------------------------
 
-def create_summary(book_id, user_id, summary_text, summary_length, summary_style, chunk_summaries):
+def create_summary(book_id, user_id, summary_text, summary_length, summary_style, chunk_summaries, summary_metadata=None):
     summary = {
         "book_id": ObjectId(book_id),
         "user_id": ObjectId(user_id),
@@ -94,11 +95,51 @@ def create_summary(book_id, user_id, summary_text, summary_length, summary_style
         "chunk_summaries": chunk_summaries,
         "created_at": datetime.now(timezone.utc)
     }
+
+    # Add metadata if provided
+    if summary_metadata is not None:
+        summary["summary_metadata"] = summary_metadata
     result = db.summaries.insert_one(summary)
     return str(result.inserted_id)
 
 def get_summary_by_id(summary_id):
     return db.summaries.find_one({"_id": ObjectId(summary_id)})
+
+def get_summary_by_book_id(book_id, user_id=None):
+    """Get the most recent summary for a book by book_id with optional ownership validation.
+
+    Returns the most recently created summary for the specified book.
+    If no summaries exist for the book, returns None.
+    Note: Multiple summaries can exist per book (as evidenced by delete_many usage).
+
+    Args:
+        book_id: The book ID (string or ObjectId) to get summaries for
+        user_id: Optional user ID for ownership validation. If provided, only returns
+                summaries that belong to the specified user.
+
+    Returns:
+        The most recent summary document, or None if no summaries exist or ownership check fails
+    """
+    # Validate and convert book_id with specific error handling
+    try:
+        bid = ObjectId(book_id) if isinstance(book_id, str) else book_id
+    except InvalidId:
+        return None
+
+    query = {"book_id": bid}
+
+    # Validate and convert user_id with specific error handling
+    if user_id is not None:
+        try:
+            uid = ObjectId(user_id) if isinstance(user_id, str) else user_id
+            query["user_id"] = uid
+        except InvalidId:
+            return None
+
+    return db.summaries.find_one(
+        query,
+        sort=[("created_at", -1)]
+    )
 
 def get_books_by_user(user_id):
     """Return list of books for the given user id."""
@@ -107,7 +148,6 @@ def get_books_by_user(user_id):
     except Exception:
         return []
     return list(db.books.find({"user_id": uid}))
-
 
 def get_summaries_by_user(user_id):
     """Return list of summaries for the given user id."""
